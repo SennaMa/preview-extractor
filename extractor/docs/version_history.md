@@ -16,6 +16,9 @@ Details:
 - Grab the text from the page
 - Output the file as a .txt
 
+Next Steps:
+1. Unit tests
+2. Break loop at the beginning
 
 ### Version 0.1.1
 

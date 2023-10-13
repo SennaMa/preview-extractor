@@ -1,9 +1,9 @@
 import logging
-from extract_highlights import *
+from extract_highlights import request_path, extract_highlights, export_text
 
 LOG_FORMAT = "%(asctime)s: %(levelname)-8s - %(name)s - line %(lineno)3d - %(message)s"
 
-output_path = "/Users/senna/Desktop/py_projects/preview-extractor/preview-extractor/data/highlighted_text.txt"
+output_path = "/Users/senna/Desktop/py_projects/preview-extractor/extractor/data/highlighted_text.txt"
 txt_file = "highlighted_text.txt"
 
 
@@ -20,7 +20,7 @@ def check_path() -> str:
 
 def extract_highlighted_text() -> list:
     path_to_pdf = check_path()
-    extract_highlights(path_to_pdf)
+    return extract_highlights(path_to_pdf)
 
 
 def main():

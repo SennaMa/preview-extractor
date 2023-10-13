@@ -14,3 +14,10 @@ which python3
 ```
 pip3 install -r requirements.txt
 ```
+
+3. Run `main.py` to start the app.
+```
+python3 extractor/app/main.py
+```
+
+If you're running into: `RuntimeError: Directory 'static/' does not exist` then uninstall `fitz` and install `pymupdf`.
