@@ -11,6 +11,7 @@ docs/personal_log.md
 
 # Distribution / packaging
 .Python
+.pre-commit*
 build/
 develop-eggs/
 dist/
