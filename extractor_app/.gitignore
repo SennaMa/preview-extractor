@@ -4,7 +4,7 @@ __pycache__/
 *$py.class
 
 # Directories
-docs/personal_log.md
+extractor_app/docs/personal_log.md
 
 # C extensions
 *.so
