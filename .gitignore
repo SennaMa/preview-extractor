@@ -3,9 +3,6 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# Directories
-extractor_app/docs/personal_log.md
-
 # C extensions
 *.so
 
