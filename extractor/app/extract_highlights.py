@@ -7,9 +7,19 @@ def request_path() -> str:
     return doc
 
 
-def extract_highlights(path_to_pdf: str) -> list:
-    """Loads PDF and searches each page for highlights.
-    Highlighted text is saved in list.
+def request_page_selection() -> list:
+    print("Please enter the range of pages that you'd like to extract.")
+    pr_from = int(input("From: "))
+    pr_to = int(input("To: "))
+
+    page_range = [pr_from, pr_to]
+    page_range.sort()
+    return page_range
+
+
+def extract_highlights(path_to_pdf: str, extract_page_range: list) -> list:
+    """Loads PDF and searches the selected page range for highlights.
+    The highlighted text is saved in list.
 
     Args:
         doc (str): path to PDF. Loaded by Fitz.
@@ -20,7 +30,10 @@ def extract_highlights(path_to_pdf: str) -> list:
     loaded_doc = fitz.open(path_to_pdf)
     highlighted_text = []
 
-    for i in range(len(loaded_doc)):
+    print(
+        f"Extracting highlighted text from pages {extract_page_range[0]} to {extract_page_range[1]}..."
+    )
+    for i in range(extract_page_range[0], extract_page_range[1] + 1, 1):
         page = loaded_doc[i]
         annots = page.annots()
 
