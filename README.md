@@ -1,6 +1,7 @@
-# preview-extractor
+# Exsum
 ### What
-Extract highlighted and annotated text from Preview.
+Extract highlighted and annotated text from Preview using a popular Python package called Fitz or PyMuPDF.
+After extracting the highlighted text, summarize the notes and save the output in a separate txt file.
 
 ### How
 1. Activate the virtual env and double-check that the venv was set up properly by running `which python3`.
