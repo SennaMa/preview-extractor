@@ -1,4 +1,4 @@
-#!/Users/senna/Desktop/py_projects/preview-extractor/bin/python3.11
+#!/Users/senna/Desktop/py_projects/exsum/bin/python3.11
 """
 The MIT License (MIT)
 

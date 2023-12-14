@@ -1,4 +1,4 @@
-# Exsum
+# exsum
 ### What
 Extract highlighted and annotated text from Preview using a popular Python package called Fitz or PyMuPDF.
 After extracting the highlighted text, summarize the notes and save the output in a separate txt file.

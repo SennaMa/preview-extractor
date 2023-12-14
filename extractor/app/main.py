@@ -1,17 +1,19 @@
 import logging
-from extract_highlights import (
+
+from datetime import datetime
+from extract_highlights import extract_highlights, export_text
+from request_args import (
+    load_and_test_extraction_inputs,
     request_path,
     request_page_selection,
-    extract_highlights,
-    export_text,
 )
+
 
 LOG_FORMAT = "%(asctime)s: %(levelname)-8s - %(name)s - line %(lineno)3d - %(message)s"
 
-txt_file = "highlighted_text.txt"
-output_path = (
-    f"/Users/senna/Desktop/py_projects/preview-extractor/extractor/data/{txt_file}"
-)
+time_of_extraction = datetime.now().strftime("%m-%d-%y %H:%M:%S")
+txt_file = "highlighted_text"
+output_path = f"/Users/senna/Desktop/py_projects/exsum/extractor/data/{txt_file}_{time_of_extraction}.txt"
 
 
 def check_path() -> str:
@@ -25,15 +27,14 @@ def check_path() -> str:
     return pdf.lower()
 
 
-def extract_highlighted_text() -> list:
-    path_to_pdf = check_path()
-    extract_page_range = request_page_selection()
-    return extract_highlights(path_to_pdf, extract_page_range)
-
-
 def main():
     logging.basicConfig(level=logging.INFO, format=LOG_FORMAT)
-    highlighted_text = extract_highlighted_text()
+    path_to_pdf = check_path()
+    extract_page_range = request_page_selection()
+    verified_inputs = load_and_test_extraction_inputs(path_to_pdf, extract_page_range)
+
+    if verified_inputs:
+        highlighted_text = extract_highlights(path_to_pdf, extract_page_range)
 
     export_text(output_path, txt_file, highlighted_text)
 

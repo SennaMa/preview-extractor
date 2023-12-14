@@ -1,20 +1,5 @@
 import fitz
-
-
-def request_path() -> str:
-    print("Hi! We'll need a few details before we can run the extractions for you.")
-    doc = input("Please enter the path that contains the PDF you want to extract: ")
-    return doc
-
-
-def request_page_selection() -> list:
-    print("Please enter the range of pages that you'd like to extract.")
-    pr_from = int(input("From: "))
-    pr_to = int(input("To: "))
-
-    page_range = [pr_from, pr_to]
-    page_range.sort()
-    return page_range
+import logging
 
 
 def extract_highlights(path_to_pdf: str, extract_page_range: list) -> list:
@@ -27,10 +12,11 @@ def extract_highlights(path_to_pdf: str, extract_page_range: list) -> list:
     Returns:
         list: highlighted text
     """
-    loaded_doc = fitz.open(path_to_pdf)
-    highlighted_text = []
 
-    print(
+    highlighted_text = []
+    loaded_doc = fitz.open(path_to_pdf)
+
+    logging.info(
         f"Extracting highlighted text from pages {extract_page_range[0]} to {extract_page_range[1]}..."
     )
     for i in range(extract_page_range[0], extract_page_range[1] + 1, 1):
@@ -56,5 +42,5 @@ def export_text(output_path: str, file: str, highlighted_text: list) -> None:
     with open(output_path, "a") as fp:
         for blurb in highlighted_text:
             fp.write(blurb + "\n")
-        print("Finished exporting highlighted text.")
-        print(f"Visit {file} to see results")
+        logging.info("Finished exporting highlighted text.")
+        logging.info(f"Visit {file} to see results")
