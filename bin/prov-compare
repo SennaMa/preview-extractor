@@ -1,4 +1,4 @@
-#!/Users/senna/Desktop/py_projects/preview-extractor/bin/python3.11
+#!/Users/senna/Desktop/py_projects/exsum/bin/python3.11
 # encoding: utf-8
 """
 prov-compare -- Compare two PROV-JSON, PROV-XML, or RDF (PROV-O) files for equivalence
