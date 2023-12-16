@@ -1,6 +1,13 @@
 import pytest
+import os
 
-from app.request_args import request_path, request_page_selection
+from app.request_args import (
+    request_path,
+    request_page_selection,
+    load_and_test_extraction_inputs,
+)
+
+TEST_PATH = os.getcwd()
 
 
 @pytest.mark.request_arguments
@@ -54,3 +61,22 @@ def test_request_page_selection_input_values(
     monkeypatch.setattr("builtins.input", lambda _: next(inputs))
     i = request_page_selection()
     assert ([type(page) for page in i] == [int, int]) == expected_result
+
+
+@pytest.mark.request_arguments
+def test_load_and_test_extraction_inputs_FileError():
+    with pytest.raises(Exception) as excinfo:
+        path_to_pdf = "123.pdf"
+        extract_page_range = [0, 1]
+
+        load_and_test_extraction_inputs(path_to_pdf, extract_page_range)
+    assert str(excinfo.value) == f"no such file: '{path_to_pdf}'"
+
+
+def test_load_and_test_extraction_inputs_IndexError():
+    with pytest.raises(IndexError) as excinfo:
+        path_to_pdf = f"{TEST_PATH}/data/test_extractions.pdf"
+        extract_page_range = [0, 5]
+
+        load_and_test_extraction_inputs(path_to_pdf, extract_page_range)
+    assert str(excinfo.typename) == "IndexError"

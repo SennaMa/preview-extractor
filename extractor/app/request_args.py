@@ -19,7 +19,7 @@ def request_page_selection() -> list:
 
 def load_and_test_extraction_inputs(
     path_to_pdf: str, extract_page_range: list
-) -> object:
+) -> object | IndexError:
     try:
         loaded_doc = fitz.open(path_to_pdf)
     except:

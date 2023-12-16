@@ -1,4 +1,5 @@
 import logging
+import os
 
 from datetime import datetime
 from extract_highlights import extract_highlights, export_text
@@ -10,10 +11,11 @@ from request_args import (
 
 
 LOG_FORMAT = "%(asctime)s: %(levelname)-8s - %(name)s - line %(lineno)3d - %(message)s"
+PROJ_PATH = os.getcwd()
 
 time_of_extraction = datetime.now().strftime("%m-%d-%y %H:%M:%S")
 txt_file = "highlighted_text"
-output_path = f"/Users/senna/Desktop/py_projects/exsum/extractor/data/{txt_file}_{time_of_extraction}.txt"
+output_path = f"{PROJ_PATH}/data/{txt_file}_{time_of_extraction}.txt"
 
 
 def check_path() -> str:
