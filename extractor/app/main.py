@@ -15,7 +15,7 @@ PROJ_PATH = os.getcwd()
 
 time_of_extraction = datetime.now().strftime("%m-%d-%y %H:%M:%S")
 txt_file = "highlighted_text"
-output_path = f"{PROJ_PATH}/data/{txt_file}_{time_of_extraction}.txt"
+output_path = f"{PROJ_PATH}/extractor/data/{txt_file}_{time_of_extraction}.txt"
 
 
 def check_path() -> str:
@@ -38,7 +38,14 @@ def main():
     if verified_inputs:
         highlighted_text = extract_highlights(path_to_pdf, extract_page_range)
 
-    export_text(output_path, txt_file, highlighted_text)
+    # if error No such file or directory: output path then create text file.
+    if output_path:
+        try:
+            export_text(output_path, txt_file, highlighted_text)
+        except FileNotFoundError:
+            f = open(output_path, "x")
+            f.close()
+            export_text(output_path, txt_file, highlighted_text)
 
 
 if __name__ == "__main__":
